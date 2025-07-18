@@ -44,7 +44,7 @@ struct CalendarView: View {
                     Button(action: { showingAddEvent = true }) {
                         Image(systemName: "plus")
                             .font(.title2)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.red)
                     }
                 }
                 .padding(.horizontal)
@@ -52,7 +52,9 @@ struct CalendarView: View {
                 if viewMode == .month {
                     MonthView(selectedDate: $selectedDate, viewMode: $viewMode, events: events)
                 } else {
-                    DayView(selectedDate: selectedDate, events: eventsForSelectedDate)
+                    DayView(selectedDate: selectedDate, events: eventsForSelectedDate) { newDate in
+                        selectedDate = newDate
+                    }
                 }
                 
                 Spacer()
